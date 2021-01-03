@@ -18,7 +18,7 @@
     <bpmn:sequenceFlow id="Flow_1qoit9n" sourceRef="Hungry" targetRef="Activity_07qr1lm" />
     <bpmn:sequenceFlow id="Flow_18986qi" sourceRef="Event_0eev8mo" targetRef="Sated" />
     <bpmn:sequenceFlow id="Flow_12zag3o" sourceRef="Activity_07qr1lm" targetRef="SendOrderAndPaymentDetails" />
-    <bpmn:receiveTask id="WaitForConfirmation" name="Wait for confirmation">
+    <bpmn:receiveTask id="WaitForConfirmation" name="Wait for confirmation" messageRef="Message_04lo5s9">
       <bpmn:incoming>Flow_1opmzjy</bpmn:incoming>
       <bpmn:outgoing>Flow_1wog72f</bpmn:outgoing>
     </bpmn:receiveTask>
@@ -91,7 +91,7 @@
     <bpmn:boundaryEvent id="Event_0259ooa" name="10 min" attachedToRef="ProcessOrderAcceptance">
       <bpmn:outgoing>Flow_0e3wip5</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_09fp86b">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">600</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:sendTask id="PayRestaurant" name="Pay Restaurant">
@@ -104,7 +104,9 @@
     </bpmn:receiveTask>
     <bpmn:boundaryEvent id="Event_1a2hd6z" name="120 min" attachedToRef="ConfirmDelivered">
       <bpmn:outgoing>Flow_0ascvlc</bpmn:outgoing>
-      <bpmn:timerEventDefinition id="TimerEventDefinition_11w6gos" />
+      <bpmn:timerEventDefinition id="TimerEventDefinition_11w6gos">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT120M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:sendTask id="NotifyCustomer" name="Notify customer">
       <bpmn:incoming>Flow_0fodnvz</bpmn:incoming>
@@ -168,12 +170,14 @@
         <bpmn:outgoing>Flow_01fi2fq</bpmn:outgoing>
       </bpmn:serviceTask>
       <bpmn:serviceTask id="Refund" name="Refund" isForCompensation="true" />
-      <bpmn:boundaryEvent id="Event_13w4qyb" name="refund" attachedToRef="MakePayment">
+      <bpmn:boundaryEvent id="refundActivity" name="refund" attachedToRef="MakePayment">
         <bpmn:compensateEventDefinition id="CompensateEventDefinition_0l5wigz" />
       </bpmn:boundaryEvent>
       <bpmn:boundaryEvent id="Event_1gqzr8v" name="2 min" attachedToRef="MakePayment">
         <bpmn:outgoing>Flow_19h9jhi</bpmn:outgoing>
-        <bpmn:timerEventDefinition id="TimerEventDefinition_19ylk0y" />
+        <bpmn:timerEventDefinition id="TimerEventDefinition_19ylk0y">
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
+        </bpmn:timerEventDefinition>
       </bpmn:boundaryEvent>
       <bpmn:sequenceFlow id="Flow_0n99chf" name="no" sourceRef="Gateway_0r6kcg3" targetRef="Event_0wua08k">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{orderAccepted}</bpmn:conditionExpression>
@@ -184,7 +188,7 @@
       <bpmn:sequenceFlow id="Flow_19h9jhi" sourceRef="Event_1gqzr8v" targetRef="Event_0wua08k" />
       <bpmn:sequenceFlow id="Flow_01fi2fq" sourceRef="MakePayment" targetRef="Gateway_0r6kcg3" />
       <bpmn:sequenceFlow id="Flow_0sq9i2a" sourceRef="Event_1a71akr" targetRef="MakePayment" />
-      <bpmn:association id="Association_0w9ax5h" associationDirection="One" sourceRef="Event_13w4qyb" targetRef="Refund" />
+      <bpmn:association id="Association_0w9ax5h" associationDirection="One" sourceRef="refundActivity" targetRef="Refund" />
     </bpmn:transaction>
     <bpmn:boundaryEvent id="Event_1mywfa5" name="Payment failed" attachedToRef="Activity_0ub07i3">
       <bpmn:outgoing>Flow_0fodnvz</bpmn:outgoing>
@@ -254,6 +258,7 @@
     <bpmn:sequenceFlow id="Flow_0jm570n" sourceRef="DecideOrderAcceptance" targetRef="Gateway_1qazu7z" />
   </bpmn:process>
   <bpmn:message id="Message_1ejxjpg" name="OrderMessage" />
+  <bpmn:message id="Message_04lo5s9" name="NofityCustomer" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_126gk8r">
       <bpmndi:BPMNShape id="Participant_0jyrmcq_di" bpmnElement="Participant_0jyrmcq" isHorizontal="true">
@@ -501,7 +506,7 @@
           <dc:Bounds x="466" y="793" width="27" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1duicum_di" bpmnElement="Event_13w4qyb">
+      <bpmndi:BPMNShape id="Event_1duicum_di" bpmnElement="refundActivity">
         <dc:Bounds x="392" y="762" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="354" y="774" width="32" height="14" />
