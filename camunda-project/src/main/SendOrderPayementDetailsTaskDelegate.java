@@ -7,7 +7,9 @@ public class SendOrderPayementDetailsTaskDelegate implements JavaDelegate {
 	  public void execute(DelegateExecution execution) throws Exception {
 
 		String food = (String) execution.getVariable("food");
-		  
+//		int price = (int) execution.getVariable("price");
+//		String restaurant = (String) execution.getVariable("restaurant");
+		
 	    execution.getProcessEngineServices()
 	      .getRuntimeService()
 	      .createMessageCorrelation("OrderMessage")

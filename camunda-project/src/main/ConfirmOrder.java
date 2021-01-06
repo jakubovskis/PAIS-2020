@@ -6,9 +6,12 @@ public class ConfirmOrder implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception{
 				
-	    execution.getProcessEngineServices()
+		Boolean orderAccepted = (Boolean) execution.getVariable("orderAccepted");
+		
+		execution.getProcessEngineServices()
 	      .getRuntimeService()
 	      .createMessageCorrelation("ConfirmOrderMessage")
+	      .setVariable("orderAccepted", orderAccepted)
 	      .correlate();
 	}
 }
