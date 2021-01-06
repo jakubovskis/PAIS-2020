@@ -6,11 +6,12 @@ public class SendOrderPayementDetailsTaskDelegate implements JavaDelegate {
 	@Override
 	  public void execute(DelegateExecution execution) throws Exception {
 
-//		String orderDetails = (String) execution.getVariable("orderdetails");
+		String food = (String) execution.getVariable("food");
 		  
 	    execution.getProcessEngineServices()
 	      .getRuntimeService()
 	      .createMessageCorrelation("OrderMessage")
+	      .setVariable("food", food)
 	      .correlate();
 
 	  }

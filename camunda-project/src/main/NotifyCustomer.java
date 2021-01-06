@@ -6,9 +6,11 @@ public class NotifyCustomer implements JavaDelegate {
 	@Override
 	public void execute(DelegateExecution execution) throws Exception{
 				
+		
 	    execution.getProcessEngineServices()
 	      .getRuntimeService()
 	      .createMessageCorrelation("NotifyCustomerMessage")
+	      .setVariable("NotifyCustomerText", "Payment failed")
 	      .correlate();
 	}
 }

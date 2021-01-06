@@ -8,7 +8,7 @@ public class ConfirmDelivery implements JavaDelegate {
 				
 	    execution.getProcessEngineServices()
 	      .getRuntimeService()
-	      .createMessageCorrelation("DeliveredMessage")
+	      .createMessageCorrelation("ConfirmDeliveryMessage")
 	      .correlate();
 	}
 }
