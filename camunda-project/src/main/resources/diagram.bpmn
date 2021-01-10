@@ -44,7 +44,7 @@
           </camunda:inputOutput>
           <camunda:formData>
             <camunda:formField id="food" label="food" type="string" />
-            <camunda:formField id="cost" label="cost" type="long" />
+            <camunda:formField id="price" label="price" type="long" />
             <camunda:formField id="restaurant" label="restaurant" type="string" />
             <camunda:formField id="cancelled" label="cancelled" type="boolean" />
           </camunda:formData>
