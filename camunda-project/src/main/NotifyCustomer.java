@@ -1,8 +1,11 @@
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import java.util.logging.Logger;
 
 public class NotifyCustomer implements JavaDelegate {
 
+	private final Logger LOGGER = Logger.getLogger(LoggerDelegate.class.getName());
+	
 	@Override
 	public void execute(DelegateExecution execution) throws Exception{
 				
@@ -24,5 +27,10 @@ public class NotifyCustomer implements JavaDelegate {
 	      .createMessageCorrelation("NotifyCustomerMessage")
 	      .setVariable("NotifyCustomerText", message)
 	      .correlate();
+	    
+	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
+	            + "activtyName='" + execution.getCurrentActivityName() + "'"
+	            + ", variables=" + execution.getVariables()
+	            + " \n\n");
 	}
 }
