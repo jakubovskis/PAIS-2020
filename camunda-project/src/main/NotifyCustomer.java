@@ -11,6 +11,7 @@ public class NotifyCustomer implements JavaDelegate {
 				
 		boolean paymentsuccess = (boolean) execution.getVariable("paymentExecuted");
 		boolean processFinished = (boolean) execution.getVariable("processFinished");
+		boolean refunded = (boolean) execution.getVariable("refunded");
 
 		String message = "Payment failed";
 		
@@ -27,6 +28,7 @@ public class NotifyCustomer implements JavaDelegate {
 	      .createMessageCorrelation("NotifyCustomerMessage")
 	      .setVariable("NotifyCustomerText", message)
 	      .setVariable("processFinished", processFinished)
+	      .setVariable("refunded", refunded)
 	      .correlate();
 	    
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "

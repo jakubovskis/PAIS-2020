@@ -11,6 +11,7 @@ public class Refund implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception{
 		
 		System.out.print("Refunded!");
+		execution.setVariable("refunded", true);
 		//Everything is refunded!
 
 		

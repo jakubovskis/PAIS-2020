@@ -232,7 +232,7 @@
       <bpmn:outgoing>Flow_1q9pufh</bpmn:outgoing>
     </bpmn:eventBasedGateway>
     <bpmn:sequenceFlow id="Flow_1if1kdx" sourceRef="Event_0bi8dfc" targetRef="Gateway_0x776nt" />
-    <bpmn:intermediateThrowEvent id="Event_0bi8dfc" name="Inform customer">
+    <bpmn:intermediateThrowEvent id="Event_0bi8dfc" name="Inform customer order status">
       <bpmn:incoming>Flow_1xxqe9s</bpmn:incoming>
       <bpmn:outgoing>Flow_1if1kdx</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0lyuzre" messageRef="Message_04lo5s9" camunda:class="InformCustomer" />
@@ -663,7 +663,7 @@
       <bpmndi:BPMNShape id="Event_131b20o_di" bpmnElement="Event_0bi8dfc">
         <dc:Bounds x="992" y="452" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="971" y="422" width="81" height="14" />
+          <dc:Bounds x="972" y="422" width="80" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0m15jk7_di" bpmnElement="Event_1mywfa5">

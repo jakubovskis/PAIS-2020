@@ -17,6 +17,8 @@ public class MakePayment implements JavaDelegate {
 		//Decide randomly if order is accepted or not
 		execution.setVariable("paymentExecuted", true);
 		execution.setVariable("processFinished", false);
+		execution.setVariable("refunded", false);
+
 		
 		
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
