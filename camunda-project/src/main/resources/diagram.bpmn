@@ -43,6 +43,9 @@
             <camunda:formField id="food" label="food" type="string" />
             <camunda:formField id="price" label="price" type="long" />
             <camunda:formField id="restaurant" label="restaurant" type="string" />
+            <camunda:formField id="cardNr" label="card nurmber" type="string" />
+            <camunda:formField id="nameOnTheCard" label="name on the card" type="string" />
+            <camunda:formField id="securityCode" label="security code" type="string" />
             <camunda:formField id="cancelled" label="cancelled" type="boolean" />
           </camunda:formData>
         </bpmn:extensionElements>

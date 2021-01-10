@@ -17,6 +17,9 @@ public class SendOrderPayementDetailsTaskDelegate implements JavaDelegate {
 		long price = (long) variables.get("price");
 		String food = (String) variables.get("food");
 		String restaurant = (String) variables.get("restaurant");
+		String cardNr = (String) variables.get("cardNr");
+		String nameOnTheCard = (String) variables.get("nameOnTheCard");
+		String securityCode = (String) variables.get("securityCode");
 				
 	    execution.getProcessEngineServices()
 	      .getRuntimeService()
@@ -24,6 +27,9 @@ public class SendOrderPayementDetailsTaskDelegate implements JavaDelegate {
 	      .setVariable("food", food)
 	      .setVariable("price", price)
 	      .setVariable("restaurant", restaurant)
+	      .setVariable("cardNr", cardNr)
+	      .setVariable("nameOnTheCard", nameOnTheCard)
+	      .setVariable("securityCode", securityCode)
 	      .correlate();
 	    
 	    
