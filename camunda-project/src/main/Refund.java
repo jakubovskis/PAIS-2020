@@ -12,6 +12,7 @@ public class Refund implements JavaDelegate {
 		
 		System.out.print("Refunded!");
 		//Everything is refunded!
+
 		
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
 	            + "activtyName='" + execution.getCurrentActivityName() + "'"

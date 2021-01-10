@@ -12,10 +12,16 @@ public class ConfirmOrder implements JavaDelegate {
 				
 		Boolean orderAccepted = (Boolean) execution.getVariable("orderAccepted");
 		
+		Boolean processFinished = true;
+		if(orderAccepted) {
+			processFinished = false;
+		}
+		
 		execution.getProcessEngineServices()
 	      .getRuntimeService()
 	      .createMessageCorrelation("ConfirmOrderMessage")
 	      .setVariable("orderAccepted", orderAccepted)
+	      .setVariable("processFinished", processFinished)
 	      .correlate();
 		
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "

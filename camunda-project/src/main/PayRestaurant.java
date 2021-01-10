@@ -13,7 +13,7 @@ public class PayRestaurant implements JavaDelegate {
 		//Imagine paying here the restaurant the amount of the given price 
 		long price = (long) execution.getVariable("price");
 		
-		execution.setVariable("fullSuccess", true);
+		execution.setVariable("processFinished", true);
 		
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
 	            + "activtyName='" + execution.getCurrentActivityName() + "'"

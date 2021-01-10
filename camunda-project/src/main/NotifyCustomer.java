@@ -10,7 +10,7 @@ public class NotifyCustomer implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception{
 				
 		boolean paymentsuccess = (boolean) execution.getVariable("paymentExecuted");
-		boolean fullsuccess = (boolean) execution.getVariable("fullSuccess");
+		boolean processFinished = (boolean) execution.getVariable("processFinished");
 
 		String message = "Payment failed";
 		
@@ -18,7 +18,7 @@ public class NotifyCustomer implements JavaDelegate {
 			message = "Restaurant could not take your order";
 		}
 		
-		if (fullsuccess) {
+		if (processFinished) {
 			message = "Order arrived";
 		}
 		
@@ -26,6 +26,7 @@ public class NotifyCustomer implements JavaDelegate {
 	      .getRuntimeService()
 	      .createMessageCorrelation("NotifyCustomerMessage")
 	      .setVariable("NotifyCustomerText", message)
+	      .setVariable("processFinished", processFinished)
 	      .correlate();
 	    
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
