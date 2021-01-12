@@ -18,8 +18,6 @@ public class MakePayment implements JavaDelegate {
 		execution.setVariable("paymentExecuted", true);
 		execution.setVariable("processFinished", false);
 		execution.setVariable("refunded", false);
-
-		
 		
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
 	            + "activtyName='" + execution.getCurrentActivityName() + "'"

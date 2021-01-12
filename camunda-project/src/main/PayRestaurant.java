@@ -15,15 +15,14 @@ public class PayRestaurant implements JavaDelegate {
 		
 		execution.setVariable("processFinished", true);
 		
-	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
-	            + "activtyName='" + execution.getCurrentActivityName() + "'"
-	            + ", variables=" + execution.getVariables()
-	            + " \n\n");
-		
 	    execution.getProcessEngineServices()
 	      .getRuntimeService()
 	      .createMessageCorrelation("PayedMessage")
 	      .correlate();
 	    
-	}
+	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
+	            + "activtyName='" + execution.getCurrentActivityName() + "'"
+	            + ", variables=" + execution.getVariables()
+	            + " \n\n");
+	   	}
 }
