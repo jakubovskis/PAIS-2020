@@ -8,13 +8,27 @@ public class NotifyCustomer implements JavaDelegate {
 	
 	@Override
 	public void execute(DelegateExecution execution) throws Exception{
+				
+		boolean paymentsuccess = (boolean) execution.getVariable("paymentExecuted");
+		boolean processFinished = (boolean) execution.getVariable("processFinished");
+		boolean refunded = (boolean) execution.getVariable("refunded");
+
+		String message = "Payment failed";
 		
-		execution.setVariable("NotifyCustomerText", "Payment failed");
+		if (paymentsuccess) {
+			message = "Restaurant could not take your order";
+		}
+		
+		if (processFinished) {
+			message = "Order arrived";
+		}
 		
 	    execution.getProcessEngineServices()
 	      .getRuntimeService()
 	      .createMessageCorrelation("NotifyCustomerMessage")
-	      .setVariable("NotifyCustomerText", "Payment failed")
+	      .setVariable("NotifyCustomerText", message)
+	      .setVariable("processFinished", processFinished)
+	      .setVariable("refunded", refunded)
 	      .correlate();
 	    
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "

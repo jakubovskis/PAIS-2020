@@ -11,8 +11,9 @@ public class Refund implements JavaDelegate {
 	public void execute(DelegateExecution execution) throws Exception{
 		
 		System.out.print("Refunded!");
+		execution.setVariable("refunded", true);
+		execution.setVariable("processFinished", true);
 		//Everything is refunded!
-		
 	    LOGGER.info("\n\n  ... LoggerDelegate invoked by "
 	            + "activtyName='" + execution.getCurrentActivityName() + "'"
 	            + ", variables=" + execution.getVariables()
