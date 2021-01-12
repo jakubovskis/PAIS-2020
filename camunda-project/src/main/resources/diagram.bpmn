@@ -743,7 +743,7 @@
       <bpmndi:BPMNShape id="Event_11kaa4k_di" bpmnElement="ConfirmDelivery">
         <dc:Bounds x="1192" y="221" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="487" y="191" width="69" height="14" />
+          <dc:Bounds x="1170" y="191" width="80" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0zebnud_di" bpmnElement="OrderHandled">
